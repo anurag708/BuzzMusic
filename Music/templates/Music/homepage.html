@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>Buzz Music</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'Music/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Music/bootstrap/custom.css' %}">
+	{% endblock %}
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{% url 'homepage' %}">Buzz Music</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{% url 'aboutus' %}">About</a></li>
+			</ul>
+		</div>
+	</nav>
+	{% block body %}
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Welcome to Buzz Music</h1>
+			<h3>Your #1 destination to music</h3>
+			<a class="btn btn-success" href="{% url 'login' %}">Login</a>
+			<a class="btn btn-danger" href="{% url 'signup' %}">Signup</a>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+		<div class="col-md-4">
+			<h3>Go to Albums</h3>
+			<p>Access The Best Albums Here</p>
+			<a class="btn btn-primary" href="{% url 'albums' %}">Enter</a>
+		</div>
+		<div class="col-md-4">
+			<h3>Go to Artists</h3>
+			<p>Access The Best Artists Here</p>
+			<a class="btn btn-primary" href="{% url 'artists' %}">Enter</a>
+		</div>
+		<div class="col-md-4">
+			<h3>Go to Songs</h3>
+			<p>Access The Best Songs Here</p>
+			<a class="btn btn-primary" href="{% url 'songs' %}">Enter</a>
+		</div>
+	</div>
+	{% endblock %}
+	     <nav class="navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand">Buzz Music 2017</p>
+      </div>
+      <div class="nav navbar-nav navbar-right">
+        <li><a href="https://www.facebook.com/anurag.7786995671" class="fa fa-facebook" style="font-size: 25px;"></a><li>
+        <li><a href="https://www.instagram.com/anurag_tyagi_cse/" class="fa fa-instagram" style="font-size: 25px;"></a><li>
+      </div>
+    </div>
+  </nav>
+	
+</body>
+</html>

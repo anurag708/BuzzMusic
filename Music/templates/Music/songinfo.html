@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 text-center" style="padding-left: 60px;padding-top: 50px">
+            <img src="{{ song.album.album_logo }}" height="250px" width="250px">
+            <h2 style="padding-left: 3px;color: white;">{{ song.name }}</h2><br>
+            <h2 style="padding-left: 3px; color: white;">By  <small style="color: white;">{{ song.album.album_artist }}</small></h2><br>
+        <audio id="myAudio" src="{{ song.song_link }}" preload="auto"></audio>
+        <button class="btn btn-lg btn-primary" onClick="togglePlay()" style="color: white;padding-top: 15px;">  Play</button>
+        
+    </div>
+    <div class="col-md-8" style="padding-left: 60px;padding-top: 25px">
+        <table border=0>
+            <tbody>
+                <tr>
+                    <h3 style="color: white;">Post a Comment</h3>
+                    <form action="{% url 'showsong' song.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4" >
+                                {% for field in form %}
+                                    <p class="form-group">{{ field }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success" type="submit">Post</button>
+                            </div>
+                        </div>
+                    </form>
+                </tr>
+                {% if song.comment_set.count %}
+                {% for comment in song.comment_set.all reversed %}
+                    <tr >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="wrapper text-left" style="opacity: 0.3;align-self: left;">
+                            <h2 style="color: black;">{{ comment }}</h2>
+                        </div>
+                            </div>
+                        </div>
+                        
+                    </tr>
+                {% endfor %}    
+                    {% else %}
+                        <h1 style="color: white;">No comments available</h1>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+var myAudio = document.getElementById("myAudio");
+function togglePlay() {
+return myAudio.paused ? myAudio.play() : myAudio.pause();
+};
+</script>
+{% endblock %}

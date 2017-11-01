@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row" style="padding-top: 20px ;padding-left: 20px;">
+
+    {% for album in all_albums %}
+    <div class="col-md-2" style="padding-right:  20px;">
+    	<a href="{% url 'showalbum' album.pk %}"><img src="{{ album.album_logo }}" height="200px" width="200px"></a>
+    	<a href="{% url 'showalbum' album.pk %}"><h4 style="color: white;">{{ album.album_name }}</h4></a>
+    </div>
+
+        <!-- if last column in row -->
+        {% if forloop.counter|divisibleby:6 and not forloop.last %}
+        </div><div class="row" style="padding-top: 20px ;padding-left: 20px;">
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="row" style="padding-top: 20px ;padding-left: 20px;">
+
+{% for genre,album in albums.items %}
+    <div class="col-md-2" style="padding-right:  20px;">
+    	<a href="{% url 'genreinfo' genre %}"><img src="{{ album.album_logo }}" height="200px" width="200px"></a>
+    	<a href="{% url 'genreinfo' genre %}"><h4 style="color: white;">{{ album.album_genre }}</h4></a>
+    </div>
+
+        <!-- if last column in row -->
+        {% if forloop.counter|divisibleby:6 and not forloop.last %}
+        </div><div class="row" style="padding-top: 20px ;padding-left: 20px;">
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

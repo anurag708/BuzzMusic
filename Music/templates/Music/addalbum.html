@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container-fluid" style="text-align: center;margin: 0 auto;width=800px;padding-top: 50px;padding-left: 300px;">
+			<div class="jumbotron text-center" style="width:800px;opacity: 0.6;">
+				<div>
+					<h2>Add an Album Here</h2>
+				</div>
+				<div>
+					<form method="POST" action="{% url 'addalbum' %}">
+						{% csrf_token %}
+						{% for field in form %}
+						<div class="form-group">
+							<label><h4>{{ field.label_tag }}</h4></label>
+							<p class="form-group text-center">{{ field }}</p>
+							{% for error in field.errors %}
+								<p style="color: red;">{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endfor %}
+						<button type="submit" class="btn btn-danger">Add</button>
+					</form>
+				</div>
+			</div>
+		</div>
+{% endblock %}

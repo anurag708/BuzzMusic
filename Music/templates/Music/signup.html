@@ -1,0 +1,33 @@
+{% extends 'Music/homepage.html' %}
+{% load staticfiles %}
+	<head>
+		{% block head %}
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href={% static 'Music/bootstrap/css/bootstrap.min.css' %}>
+	<link rel="stylesheet" type="text/css" href={% static 'Music/bootstrap/custom.css' %}>	
+	{% endblock %}
+</head>
+	{% block body %}
+		<div class="container-fluid" style="text-align: center;margin: 0 auto;width=800px;padding-top: 50px;padding-left: 300px;">
+			<div class="jumbotron text-center" style="width:800px;opacity: 0.8;">
+				<div>
+					<h2>Signup to Access The Services</h2>
+				</div>
+				<div>
+					<form method="POST">
+						{% csrf_token %}
+						{% for field in form %}
+						<div class="form-group">
+							<label><h4>{{ field.label_tag }}</h4></label>
+							<p class="form-group text-center">{{ field }}</p>
+							{% for error in field.errors %}
+								<p style="color: red;">{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endfor %}
+						<button type="submit" class="btn btn-danger">Signup</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
