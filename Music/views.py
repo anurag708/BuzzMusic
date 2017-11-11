@@ -37,7 +37,7 @@ def favourites(request):
     favourite_songs=[]
     for i in Song.objects.all():
         a=Like.objects.filter(user=request.user,song=i)
-        if len(a):
+        if len(a) and a.like:
             favourite_songs.append(a[0].song)
     return render(request,'Music/favourites.html',{'favourite_songs':favourite_songs})
 
